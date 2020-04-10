@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Se biler";
+}
+
+    <section>
+        <h1 class="border-bottom">@ViewData["Title"]</h1>
+    </section>
+    <section class="container-fluid">
+        <article class="row">
+            <section  class="col-3 row no-gutters border rounded overflow-hidden">
+                <ul class="billedegalleri" >
+                    <li >
+                        <img src="~/Pictures/GulBil.jpg" style="width:100%" onclick="myFunction(this);" />
+                    </li>
+                    <li>
+                        <img src="~/Pictures/RodBil.jpg" style="width:100%" onclick="myFunction(this);" />
+                    </li>
+                    <li>
+                        <img src="~/Pictures/OrangeBil.jpg"  style="width:100%;" onclick="myFunction(this);" />
+                    </li>
+                </ul>
+            </section>
+
+            <section class="col-8 row no-gutters border rounded overflow-hidden">
+                <div>
+                    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+                    <img id="expandedImg" style="width:100%;">
+                    <div id="imgtext"></div>
+                </div>
+            </section>
+            <section class="col-2">
+            </section>
+        </article>
+    </section>
+
+

@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+    <section class="container" style="margin-bottom: 60px;">
+        <h2 style="text-align:center">Slideshow Gallery</h2>
+
+        <div id="slideshow" class="container">
+            <div class="mySlides">
+                <div class="numbertext">1 / 6</div>
+                <img src="~/Pictures/img_car1.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">2 / 6</div>
+                <img src="~/Pictures/GulBil.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">3 / 6</div>
+                <img src="~/Pictures/OrangeBil.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">4 / 6</div>
+                <img src="~/Pictures/RodBil.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">5 / 6</div>
+                <img src="~/Pictures/img_car1.jpg" style="width:100%">
+            </div>
+
+            <div class="mySlides">
+                <div class="numbertext">6 / 6</div>
+                <img src="~/Pictures/GulBil.jpg" style="width:100%">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <img class="demo cursor" src="~/Pictures/img_car1.jpg" style="width:100%; height:100px" onclick="currentSlide(1)" alt="Car 1">
+                </div>
+                <div class="column">
+                    <img class="demo cursor" src="~/Pictures/GulBil.jpg" style="width:100%; height:100px" onclick="currentSlide(2)" alt="Car 2">
+                </div>
+                <div class="column">
+                    <img class="demo cursor" src="~/Pictures/OrangeBil.jpg" style="width:100%; height:100px" onclick="currentSlide(3)" alt="Car 3">
+                </div>
+                <div class="column">
+                    <img class="demo cursor" src="~/Pictures/RodBil.jpg" style="width:100%; height:100px" onclick="currentSlide(4)" alt="Car 4">
+                </div>
+                <div class="column">
+                    <img class="demo cursor" src="~/Pictures/img_car1.jpg" style="width:100%; height:100px" onclick="currentSlide(5)" alt="Car 5">
+                </div>
+                <div class="column">
+                    <img class="demo cursor" src="~/Pictures/GulBil.jpg" style="width:100%; height:100px" onclick="currentSlide(6)" alt="Car 6">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
