@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AspBilCrud.Database
 {
@@ -15,5 +17,7 @@ namespace AspBilCrud.Database
         public string Color { get; set; }
 
         public string Billede { get; set; }
+
+        public int RowVersion { get; set; }
     }
 }

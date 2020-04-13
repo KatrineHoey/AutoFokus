@@ -44,9 +44,18 @@ namespace AspApiCars.Controllers
 
         // GET: api/Cars/5
         [HttpGet("{id}")]
-        public CarDto GetCar(int id)
+        public CarDto GetCar(int? id)
         {
-            return Mapper.Map(_context.Cars.Find(id));
+            if (_context.Cars.Any(c => c.ID == id.Value))
+            {
+                return Mapper.Map(_context.Cars.Find(id.Value));
+            }
+            else
+            {
+                CarDto car = null;
+                return car;
+            }
+
         }
 
         // PUT: api/Cars/5
@@ -55,8 +64,15 @@ namespace AspApiCars.Controllers
         [HttpPut("{id}")]
         public void PutCar(int id, [FromBody]CarDto car)
         {
-            _context.Cars.Update(Mapper.Map(car));
-            _context.SaveChanges();
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking; //Hvis der trackes, så sker der fejl.
+
+            if (_context.Cars.Any(c => c.ID == car.ID)) //Tjekker at bilen stadig findes i databasen. 
+            {
+                car.RowVersion = car.RowVersion + 1; //Viser at der er blevet foretaget en ændring ved denne bil. 
+                _context.Cars.Update(Mapper.Map(car));
+                _context.SaveChanges();
+
+            }
 
         }
 
@@ -66,6 +82,7 @@ namespace AspApiCars.Controllers
         [HttpPost]
         public void PostCar([FromBody] CarDto car)
         {
+            car.RowVersion = 1;
             _context.Cars.Add(Mapper.Map(car));
             _context.SaveChanges();
 
@@ -73,40 +90,17 @@ namespace AspApiCars.Controllers
 
         // DELETE: api/Cars/5
         [HttpDelete("{id}")]
-        public void DeleteCar(int id)
+        public void DeleteCar(int? id)
         {
-            _context.Cars.Remove(_context.Cars.Find(id));
-            _context.SaveChanges();
+            if (_context.Cars.Any(c => c.ID == id.Value)) //Tjekker at bilen stadig findes i databasen. 
+            {
+                _context.Cars.Remove(_context.Cars.Find(id.Value)); //Fjerner bilen fra databasen. 
+                _context.SaveChanges();
+            }
         }
-
     }
 
 
 }
 
-//[ApiVersion("2")]
-//[Route("api/v{v:apiVersion}/Cars")]
-//[ApiController]
-//public class CarsV2Controller : ControllerBase
-//{
-//    private readonly CarContext _context;
 
-//    public CarsV2Controller(CarContext context)
-//    {
-//        _context = context;
-//    }
-
-//    // GET: api/Cars
-//    [HttpGet]
-//    public IEnumerable<CarDto> GetCars()
-//    {
-//        return _context.Cars.Select(c => Mapper.Map(c));
-//    }
-
-//    // GET: api/Cars/5
-//    [HttpGet("{id}")]
-//    public CarDto GetCar(int id)
-//    {
-//        return Mapper.Map(_context.Cars.Find(id));
-//    }
-//}

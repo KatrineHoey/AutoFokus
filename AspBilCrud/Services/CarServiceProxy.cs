@@ -61,6 +61,7 @@ namespace AspBilCrud.Services
         public async Task RemoveAsync(int id)
         {
             var response = await Client.DeleteAsync($"{_carsRequestUri}/{id}").ConfigureAwait(false);
+
             response.EnsureSuccessStatusCode();
         }
 

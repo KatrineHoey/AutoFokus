@@ -30,11 +30,19 @@ namespace AspBilCrud.Controllers
         {
             if (id == null) return NotFound();
 
-            var car = await _carService.GetCarAsync(id.Value).ConfigureAwait(false);
+            try
+            {
+                var car = await _carService.GetCarAsync(id.Value).ConfigureAwait(false);
 
-            if (car == null) return NotFound();
+                if (car == null) return NotFound();
 
-            return View(Mapper.Map(car));
+                return View(Mapper.Map(car));
+            }
+            catch (Exception)
+            { //Laver fejlmeddelse
+                TempData["CarCantBeFound"] = "Bilen findes ikke længere.";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // GET: Cars/Create
@@ -42,9 +50,9 @@ namespace AspBilCrud.Controllers
         {
             return View(new CarViewModel
             {
-                Model = "Galaxy",
-                Brand = "Ford",
-                Color = "Sort",
+                Model = " ",
+                Brand = " ",
+                Color = " ",
                 Billede = " "
 
             });
@@ -70,11 +78,20 @@ namespace AspBilCrud.Controllers
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return NotFound();
 
-            var car = await _carService.GetCarAsync(id.Value).ConfigureAwait(false);
-            if (car == null) return NotFound();
-            return View(Mapper.Map(car));
+            try
+            {
+                var car = await _carService.GetCarAsync(id.Value).ConfigureAwait(false);
+                if (car == null) return NotFound();
+
+                return View(Mapper.Map(car));
+            }
+            catch (Exception)
+            { //Laver fejlmeddelse
+                TempData["CarCantBeFound"] = "Bilen findes ikke længere.";
+                return RedirectToAction(nameof(Index));
+            }
+
         }
 
         // POST: Cars/Edit/5
@@ -82,17 +99,24 @@ namespace AspBilCrud.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Brand,Model,Color")] CarViewModel car)
+        public async Task<IActionResult> Edit(int id, [Bind("ID, Brand, Model, Color, Billede, RowVersion")] CarViewModel car)
         {
             if (id != car.ID) return NotFound();
+            var oldCar = await _carService.GetCarAsync(id).ConfigureAwait(false); //Henter den nyeste opdateret bil fra databasen.
 
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid && Mapper.Map(oldCar).RowVersion == car.RowVersion) //Der sammenlignes om den nyeste bil og den nuværende bil har samme rowversion.
+            { //Hvis rowversion er ens, så der ikke andre brugere som har været inde og ændre i bilen. 
+
                 await _carService.UpdateAsync(id, Mapper.Map(car)).ConfigureAwait(false);
+
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {//Laver en fejlmeddelse 
+                TempData["CarAlreadyUpdated"] = "Bilen er allerede blevet opdateret af en anden bruger. Opdater siden, hvis du stadig ønsker at ændre i bilen.";
+                return View(car);
+            }
 
-            return View(car);
         }
 
 
@@ -100,23 +124,31 @@ namespace AspBilCrud.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
+            try
+            {
+                var car = await _carService.GetCarAsync(id.Value).ConfigureAwait(false);
+                if (car == null) return NotFound();
+                return View(Mapper.Map(car));
+            }
+            catch (Exception)
+            { //Laver fejlmeddelse
+                TempData["CarCantBeFound"] = "Bilen findes ikke længere.";
+                return RedirectToAction(nameof(Index));
+            }
 
-            var movie = await _carService.GetCarAsync(id.Value).ConfigureAwait(false);
-            if (movie == null) return NotFound();
-
-            return View(Mapper.Map(movie));
         }
 
         //POST: Cars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            await _carService.RemoveAsync(id).ConfigureAwait(false);
-
+            await _carService.RemoveAsync(id.Value).ConfigureAwait(false);
             return RedirectToAction(nameof(Index));
-
+            
         }
+
+
 
 
     }

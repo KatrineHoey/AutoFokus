@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200413065939_RowVersion.cs" />
+    <Compile Remove="Migrations\20200413065939_RowVersion.Designer.cs" />
+    <Compile Remove="Migrations\20200413070332_RowVersion.cs" />
+    <Compile Remove="Migrations\20200413070332_RowVersion.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />

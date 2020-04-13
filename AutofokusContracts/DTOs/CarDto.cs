@@ -14,5 +14,8 @@ namespace AutofokusContracts.DTOs
         public string Color { get; set; }
 
         public string Billede { get; set; }
+
+        
+        public int RowVersion { get; set; }
     }
 }
