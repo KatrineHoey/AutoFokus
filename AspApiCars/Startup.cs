@@ -1,5 +1,4 @@
 using System.Linq;
-using AspBilCrud.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -10,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using AspApiCars.Exstensions;
+using AutoFokus.Service.Domain;
+using AutoFokus.Service.Infrastructure;
 
 namespace AspApiCars
 {
@@ -30,6 +31,7 @@ namespace AspApiCars
             services.AddDbContext<CarContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<ICarService, CarService>();
             services.AddApiVersioningAndExplorer();
 
             services.AddSwaggerGeneration();
@@ -44,10 +46,10 @@ namespace AspApiCars
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
+
             app.UseSwagger();
             app.UseSwaggerUIAndAddApiVersionEndPointBuilder(provider);
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

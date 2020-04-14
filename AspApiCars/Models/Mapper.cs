@@ -1,11 +1,12 @@
-﻿using AspBilCrud.Database;
+﻿//using AspBilCrud.Database;
 using AutofokusContracts.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoFokus.Service.Infrastructure;
 
-namespace AspApiCars.Database
+namespace AspApiCars.Models
 {
     public class Mapper
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AspBilCrud.Database
+namespace AutoFokus.Service.Infrastructure
 {
     public class Car
     {

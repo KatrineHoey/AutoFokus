@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspApiCars", "AspApiCars\As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutofokusContracts", "AutofokusContracts\AutofokusContracts.csproj", "{DFFC61B4-8658-4F66-BBB9-87E8C112423B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFokus.Service.Domain", "AutoFokus.Service.Domain\AutoFokus.Service.Domain.csproj", "{FA76197D-9060-4FFF-9E79-09FBB216B01A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFokus.Service.Infrastructure", "AutoFokus.Service.Infrastructure\AutoFokus.Service.Infrastructure.csproj", "{41E447BB-B932-432C-94C0-84B970695057}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{DFFC61B4-8658-4F66-BBB9-87E8C112423B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFFC61B4-8658-4F66-BBB9-87E8C112423B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFFC61B4-8658-4F66-BBB9-87E8C112423B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA76197D-9060-4FFF-9E79-09FBB216B01A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA76197D-9060-4FFF-9E79-09FBB216B01A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA76197D-9060-4FFF-9E79-09FBB216B01A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA76197D-9060-4FFF-9E79-09FBB216B01A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41E447BB-B932-432C-94C0-84B970695057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41E447BB-B932-432C-94C0-84B970695057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41E447BB-B932-432C-94C0-84B970695057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41E447BB-B932-432C-94C0-84B970695057}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

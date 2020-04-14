@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AspBilCrud.Migrations
+namespace AutoFokus.Service.Infrastructure.Migrations
 {
     public partial class InitialCreate : Migration
     {
