@@ -3,7 +3,9 @@ using AutofokusContracts.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -12,11 +14,13 @@ namespace AspBilCrud.Services
 {
     public class CarServiceProxy : ICarService
     {
-        private const string _carsRequestUri = "api/v1.0/Cars";
+        private const string _carsRequestUri = "api/Cars";
         public HttpClient Client { get; }
         public CarServiceProxy(HttpClient client)
         {
             Client = client;
+            client.DefaultRequestHeaders.Accept.Add( new MediaTypeWithQualityHeaderValue("application/json")
+            { Parameters = { new NameValueHeaderValue("v", "1.0") } });
         }
 
 
