@@ -78,7 +78,7 @@ namespace AspBilCrud.Controllers
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-
+            ViewData["CarAlreadyUpdated"] = " ";
             try
             {
                 var car = await _carService.GetCarAsync(id.Value).ConfigureAwait(false);
@@ -113,8 +113,10 @@ namespace AspBilCrud.Controllers
             }
             else
             {//Laver en fejlmeddelse 
-                TempData["CarAlreadyUpdated"] = "Bilen er allerede blevet opdateret af en anden bruger. Opdater siden, hvis du stadig ønsker at ændre i bilen.";
-                return View(car);
+                //ViewData["CarAlreadyUpdated"] = "Bilen er allerede blevet opdateret af en anden bruger. Opdater siden, hvis du stadig ønsker at ændre i bilen.";
+                //return View(car);
+                TempData["CarCantBeFound"] = "Bilen er blevet redigeret af en anden bruger. Prøv igen.";
+                return RedirectToAction(nameof(Index));
             }
 
         }

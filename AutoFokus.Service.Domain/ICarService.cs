@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AutoFokus.Service.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoFokus.Service.Domain
 {
@@ -32,6 +33,8 @@ namespace AutoFokus.Service.Domain
         public Car GetCar(int id)
         {
             return _context.Cars.Find(id);
+
+
         }
 
 
@@ -44,14 +47,25 @@ namespace AutoFokus.Service.Domain
 
         public void UpdateCar(Car car)
         {
-            _context.Cars.Update(car);
-            _context.SaveChanges();
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking; //Hvis der trackes, så sker der fejl.
+            if(_context.Cars.Any(c => c.ID == car.ID)) //Tjekker at bilen stadig findes i databasen. 
+            {
+                car.RowVersion = car.RowVersion + 1; //Viser at der er blevet foretaget en ændring ved denne bil. 
+                _context.Cars.Update(car);
+                _context.SaveChanges();
+            }
+
+
         }
 
         public void DeleteCar(int id)
         {
-            _context.Cars.Remove(_context.Cars.Find(id));
-            _context.SaveChanges();
+            if(_context.Cars.Any(c => c.ID == id))
+            {
+                _context.Cars.Remove(_context.Cars.Find(id));
+                _context.SaveChanges();
+            }
+            
         }
 
 
