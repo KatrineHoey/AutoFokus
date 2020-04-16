@@ -33,6 +33,8 @@ namespace AspBilCrud
             {
                 client.BaseAddress = new Uri(Configuration["BaseUrl"]);
             });
+            AboutInformations a = new AboutInformations("AboutInformations.txt"); //Henter stamdata ind fra ekstern fil. 
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

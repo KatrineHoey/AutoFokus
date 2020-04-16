@@ -1,9 +1,14 @@
-﻿<!DOCTYPE html>
+﻿
+@{ 
+    ViewData["Name"] = AspBilCrud.Services.AboutInformations.Name;
+    ViewData["copyRightYear"] = AspBilCrud.Services.AboutInformations.copyRightYear;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AutoFokus</title>
+    <title>@ViewData["Title"] - @ViewData["Name"]</title>
     <link rel="stylesheet" href="~/css/StyleSheet1.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/javascript" href="~/js/site.js" />
@@ -12,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AutoFokus</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@ViewData["Name"]</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,7 +25,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">AutoFokus</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@ViewData["Name"]</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Billiste</a>
@@ -50,7 +55,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - AutoFokus - <a asp-area="" asp-controller="Home" asp-action="Index">AutoFokus</a>
+            &copy; @ViewData["copyRightYear"] - @ViewData["Name"] - <a asp-area="" asp-controller="Home" asp-action="Index">@ViewData["Name"]</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

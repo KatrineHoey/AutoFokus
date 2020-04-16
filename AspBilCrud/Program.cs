@@ -8,9 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
-
-
-
+using AspBilCrud.Services;
 
 namespace AspBilCrud
 {
@@ -19,7 +17,7 @@ namespace AspBilCrud
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-
+            
         }
 
 
