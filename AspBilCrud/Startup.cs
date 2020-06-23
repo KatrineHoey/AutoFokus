@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutofokusContracts.Services;
 using AspBilCrud.Services;
+using Autofokus.Service.Contracts.Services;
 
 namespace AspBilCrud
 {

@@ -165,3 +165,26 @@ body {
     .demo:hover {
         opacity: 1;
     }
+
+
+/*Til dropdown navigation-bar:*/
+
+/* Dropdown content (hidden by default) */
+.mydropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    /* Add a grey background color to dropdown links on hover */
+    .mydropdown-content a:hover, li:hover {
+        background-color: #ddd;
+    }
+
+/* Show the dropdown menu on hover */
+.mydropdown:hover .mydropdown-content {
+    display: block;
+}

@@ -22,9 +22,7 @@ namespace AutoFokus.Service.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Car>().ToTable("Car")
-                .Property(p => p.RowVersion)
-                .IsRowVersion();
+            modelBuilder.Entity<Car>().ToTable("Car");
 
         }
     }

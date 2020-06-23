@@ -18,9 +18,6 @@ namespace AutoFokus.Service.Infrastructure
 
         public string Billede { get; set; }
 
-       // public int RowVersion { get; set; }
-
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
+        public int RowVersion { get; set; }
     }
 }

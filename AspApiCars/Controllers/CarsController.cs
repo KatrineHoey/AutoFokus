@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspApiCars.Models;
+using Autofokus.Service.Contracts.DTOs;
+using AutoFokus.Service.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AspApiCars.Models;
-using AutoFokus.Service.Infrastructure;
-using AutofokusContracts.DTOs;
-using AutoFokus.Service.Domain;
 
 namespace AspApiCars.Controllers
 {
@@ -36,8 +35,7 @@ namespace AspApiCars.Controllers
         [HttpGet("{id}")]
         public CarDto GetCar(int id)
         {
-            Car car = _carService.GetCar(id);
-            if (car == null)
+            if (_carService.GetCar(id) == null)
             {
                 CarDto carDTO = null;
                 return carDTO;
@@ -46,7 +44,7 @@ namespace AspApiCars.Controllers
             {
                 return Mapper.Map(_carService.GetCar(id));
             }
-           
+
         }
 
         // PUT: api/Cars/5
@@ -56,8 +54,6 @@ namespace AspApiCars.Controllers
         public void PutCar(int id, [FromBody]CarDto car)
         {
             _carService.UpdateCar(Mapper.Map(car));
-
-
 
         }
 

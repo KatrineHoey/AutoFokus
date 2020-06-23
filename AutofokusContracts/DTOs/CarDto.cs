@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace AutofokusContracts.DTOs
@@ -15,7 +16,9 @@ namespace AutofokusContracts.DTOs
 
         public string Billede { get; set; }
 
-        
-        public int RowVersion { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
+        //public int RowVersion { get; set; }
     }
 }

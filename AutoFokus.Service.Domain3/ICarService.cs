@@ -50,7 +50,7 @@ namespace AutoFokus.Service.Domain
             _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking; //Hvis der trackes, så sker der fejl.
             if(_context.Cars.Any(c => c.ID == car.ID)) //Tjekker at bilen stadig findes i databasen. 
             {
-                //car.RowVersion = car.RowVersion + 1; //Viser at der er blevet foretaget en ændring ved denne bil. 
+                car.RowVersion = car.RowVersion + 1; //Viser at der er blevet foretaget en ændring ved denne bil. 
                 _context.Cars.Update(car);
                 _context.SaveChanges();
             }

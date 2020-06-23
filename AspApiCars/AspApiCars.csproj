@@ -14,14 +14,15 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.3.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.3.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.4.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.4.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.4.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutoFokus.Service.Domain\AutoFokus.Service.Domain.csproj" />
-    <ProjectReference Include="..\AutofokusContracts\AutofokusContracts.csproj" />
+    <ProjectReference Include="..\AutoFokus.Service.Contracts\AutoFokus.Service.Contracts.csproj" />
+    <ProjectReference Include="..\AutoFokus.Service.Domain3\AutoFokus.Service.Domain.csproj" />
+    <ProjectReference Include="..\AutoFokus.Service.Infrastructure2\AutoFokus.Service.Infrastructure.csproj" />
   </ItemGroup>
 
 

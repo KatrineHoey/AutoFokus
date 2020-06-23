@@ -1,10 +1,9 @@
-﻿//using AspBilCrud.Database;
-using AutofokusContracts.DTOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoFokus.Service.Infrastructure;
+using Autofokus.Service.Contracts.DTOs;
 
 namespace AspApiCars.Models
 {

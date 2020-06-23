@@ -1,4 +1,4 @@
-﻿using AutofokusContracts.DTOs;
+﻿using Autofokus.Service.Contracts.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

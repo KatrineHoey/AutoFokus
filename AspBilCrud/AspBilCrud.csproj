@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutofokusContracts\AutofokusContracts.csproj" />
+    <ProjectReference Include="..\AutoFokus.Service.Contracts\AutoFokus.Service.Contracts.csproj" />
+    <ProjectReference Include="..\AutoFokus.Service.Domain3\AutoFokus.Service.Domain.csproj" />
   </ItemGroup>
 
 

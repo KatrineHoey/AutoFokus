@@ -1,5 +1,5 @@
-﻿using AutofokusContracts.DTOs;
-using AutofokusContracts.Services;
+﻿using Autofokus.Service.Contracts.DTOs;
+using Autofokus.Service.Contracts.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace AspBilCrud.Services
 {
     public class CarServiceProxy : ICarService
     {
-        private const string _carsRequestUri = "api/Cars";
+        private const string _carsRequestUrl = "api/Cars";
         public HttpClient Client { get; }
         public CarServiceProxy(HttpClient client)
         {
@@ -28,13 +28,13 @@ namespace AspBilCrud.Services
         {
             var json = JsonSerializer.Serialize(car); //Laver et objekt car om til json.
             var data = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await Client.PostAsync(_carsRequestUri, data).ConfigureAwait(false);
+            var response = await Client.PostAsync(_carsRequestUrl, data).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
         }
 
         public async Task<CarDto> GetCarAsync(int id)
         {
-            var response = await Client.GetAsync($"{_carsRequestUri}/{id}").ConfigureAwait(false);
+            var response = await Client.GetAsync($"{_carsRequestUrl}/{id}").ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
 
@@ -50,7 +50,7 @@ namespace AspBilCrud.Services
 
         public async Task<IEnumerable<CarDto>> GetCarsAsync()
         {
-            var response = await Client.GetAsync(_carsRequestUri).ConfigureAwait(false);
+            var response = await Client.GetAsync(_carsRequestUrl).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
 
             var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
@@ -64,7 +64,7 @@ namespace AspBilCrud.Services
 
         public async Task RemoveAsync(int id)
         {
-            var response = await Client.DeleteAsync($"{_carsRequestUri}/{id}").ConfigureAwait(false);
+            var response = await Client.DeleteAsync($"{_carsRequestUrl}/{id}").ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
         }
@@ -73,7 +73,7 @@ namespace AspBilCrud.Services
         {
             var json = JsonSerializer.Serialize(car);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await Client.PutAsync($"{_carsRequestUri}/{id}", data).ConfigureAwait(false);
+            var response = await Client.PutAsync($"{_carsRequestUrl}/{id}", data).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
         }
     }

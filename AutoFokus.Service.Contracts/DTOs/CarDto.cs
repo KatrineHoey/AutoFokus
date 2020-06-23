@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-namespace AutoFokus.Service.Infrastructure
+namespace Autofokus.Service.Contracts.DTOs
 {
-    public class Car
+    public class CarDto
     {
         public int ID { get; set; }
         public string Brand { get; set; }
@@ -18,9 +16,7 @@ namespace AutoFokus.Service.Infrastructure
 
         public string Billede { get; set; }
 
-       // public int RowVersion { get; set; }
+        public int RowVersion { get; set; }
 
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
     }
 }

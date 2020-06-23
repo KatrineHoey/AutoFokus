@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspBilCrud.Models;
-using AutofokusContracts.Services;
+using Autofokus.Service.Contracts.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspBilCrud.Controllers
@@ -101,23 +101,33 @@ namespace AspBilCrud.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID, Brand, Model, Color, Billede, RowVersion")] CarViewModel car)
         {
-            if (id != car.ID) return NotFound();
-            var oldCar = await _carService.GetCarAsync(id).ConfigureAwait(false); //Henter den nyeste opdateret bil fra databasen.
+            try
+            {
+                if (id != car.ID) return NotFound();
+                var oldCar = await _carService.GetCarAsync(id).ConfigureAwait(false); //Henter den nyeste opdateret bil fra databasen.
 
-            if (ModelState.IsValid && Mapper.Map(oldCar).RowVersion == car.RowVersion) //Der sammenlignes om den nyeste bil og den nuværende bil har samme rowversion.
-            { //Hvis rowversion er ens, så der ikke andre brugere som har været inde og ændre i bilen. 
+                if (ModelState.IsValid && Mapper.Map(oldCar).RowVersion == car.RowVersion) //Der sammenlignes om den nyeste bil og den nuværende bil har samme rowversion.
+                { //Hvis rowversion er ens, så der ikke andre brugere som har været inde og ændre i bilen. 
 
-                await _carService.UpdateAsync(id, Mapper.Map(car)).ConfigureAwait(false);
+                    await _carService.UpdateAsync(id, Mapper.Map(car)).ConfigureAwait(false);
 
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {//Laver en fejlmeddelse 
+                    TempData["CarCantBeFound"] = "Bilen er blevet redigeret af en anden bruger. Prøv igen.";
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (Exception)
+            {
+
+                //Laver fejlmeddelse
+                TempData["CarCantBeFound"] = "Bilen findes ikke længere.";
                 return RedirectToAction(nameof(Index));
             }
-            else
-            {//Laver en fejlmeddelse 
-                //ViewData["CarAlreadyUpdated"] = "Bilen er allerede blevet opdateret af en anden bruger. Opdater siden, hvis du stadig ønsker at ændre i bilen.";
-                //return View(car);
-                TempData["CarCantBeFound"] = "Bilen er blevet redigeret af en anden bruger. Prøv igen.";
-                return RedirectToAction(nameof(Index));
-            }
+
+
 
         }
 
